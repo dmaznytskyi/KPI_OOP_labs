@@ -14,13 +14,15 @@ class GameWidget : public QWidget
 		~GameWidget();
 
 	public slots:
-		void nextAnimFrame();
+		void progBar();
 
 	protected:
 		void paintEvent(QPaintEvent *);
 
 	private:
-		int frameNo;
+		QHBoxLayout main_layout;
+		QProgressBar prog_bar;
+		QTimer timer;
 };
 
 #endif // GAMEWIDGET_H

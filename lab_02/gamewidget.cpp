@@ -5,10 +5,14 @@ GameWidget::GameWidget(QWidget *parent)
 {
     setWindowTitle("TETRIS");
 	setFixedSize(500,500);
-	QTimer *timer = new QTimer(this);
-	connect(timer,SIGNAL(timeout()),this,SLOT(nextAnimFrame()));
-	timer->start(1);
-	update();
+
+	main_layout.addWidget(&prog_bar);
+	main_layout.setAlignment(Qt::AlignBottom);
+	setLayout(&main_layout);
+	prog_bar.setMinimum(0);
+	prog_bar.setMaximum(100);
+	connect(&timer,SIGNAL(timeout()),SLOT(progBar()));
+	timer.start();
 }
 
 GameWidget::~GameWidget()
@@ -16,10 +20,15 @@ GameWidget::~GameWidget()
 
 }
 
-void GameWidget::nextAnimFrame()
+void GameWidget::progBar()
 {
-	++frameNo;
-	update();
+	if (prog_bar.value() < prog_bar.maximum())
+		prog_bar.setValue(prog_bar.value()+1);
+	else
+	{
+		prog_bar.setHidden(true);
+		timer.stop();
+	}
 }
 
 void GameWidget::paintEvent(QPaintEvent *)
@@ -29,6 +38,5 @@ void GameWidget::paintEvent(QPaintEvent *)
 	QPoint p0;
 	QImage bckg(":/main_menu/00.jpg");
 	painter.drawImage(p0, bckg);
-	//anim
-	painter.translate(500,500);
+
 }
