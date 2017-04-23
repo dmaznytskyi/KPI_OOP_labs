@@ -1,8 +1,8 @@
 #include "game.h"
 
-int main(int ac, char *av[])
+int main(int argc, char *argv[])
 {
-	QApplication app(ac, av);
+	QApplication app(argc, argv);
 	Game game;
 	game.run();
 	return app.exec();

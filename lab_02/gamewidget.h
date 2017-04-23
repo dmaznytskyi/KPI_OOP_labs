@@ -20,7 +20,8 @@ class GameWidget : public QWidget
 		void paintEvent(QPaintEvent *);
 
 	private:
-		QHBoxLayout main_layout;
+		QVBoxLayout main_layout;
+		QLabel logo_pic;
 		QProgressBar prog_bar;
 		QTimer timer;
 };

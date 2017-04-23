@@ -2,7 +2,6 @@
 
 Game::Game()
 {
-
 }
 
 void Game::run()

@@ -6,8 +6,14 @@ GameWidget::GameWidget(QWidget *parent)
     setWindowTitle("TETRIS");
 	setFixedSize(500,500);
 
+	QImage logo(":/main_menu/TetrisLogo.png");
+	QPixmap logomap = QPixmap::fromImage(logo);
+	logo_pic.setPixmap(logomap.scaledToWidth(400));
+	logo_pic.setHidden(true);
+	logo_pic.setAlignment(Qt::AlignHCenter);
+	main_layout.addWidget(&logo_pic);
+	main_layout.addStretch(true);
 	main_layout.addWidget(&prog_bar);
-	main_layout.setAlignment(Qt::AlignBottom);
 	setLayout(&main_layout);
 	prog_bar.setMinimum(0);
 	prog_bar.setMaximum(100);
@@ -28,15 +34,14 @@ void GameWidget::progBar()
 	{
 		prog_bar.setHidden(true);
 		timer.stop();
+		logo_pic.setHidden(false);
 	}
 }
 
 void GameWidget::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
-	//TODO with pixmap
 	QPoint p0;
 	QImage bckg(":/main_menu/00.jpg");
 	painter.drawImage(p0, bckg);
-
 }

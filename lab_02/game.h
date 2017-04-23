@@ -10,6 +10,7 @@ class Game
 		void run();
 	private:
 		GameWidget mw;
+
 };
 
 #endif // GAME_H
